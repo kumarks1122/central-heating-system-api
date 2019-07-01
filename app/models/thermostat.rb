@@ -11,11 +11,13 @@ class Thermostat < ApplicationRecord
 
     readings_arr = readings.to_a + sidekiq_reading
 
-    [:humidity, :temperature, :battery_charge].each do |reading_field|
-      result[reading_field] = {}
-      result[reading_field][:minimum] = readings_arr.min_by(&reading_field)[reading_field]
-      result[reading_field][:maximum] = readings_arr.max_by(&reading_field)[reading_field]
-      result[reading_field][:average] = readings_arr.inject(0){ |sum, el| sum + el[reading_field] }.to_f / readings_arr.size
+    unless readings_arr[0].nil?
+      [:humidity, :temperature, :battery_charge].each do |reading_field|
+        result[reading_field] = {}
+        result[reading_field][:minimum] = readings_arr.min_by(&reading_field)[reading_field]
+        result[reading_field][:maximum] = readings_arr.max_by(&reading_field)[reading_field]
+        result[reading_field][:average] = readings_arr.inject(0){ |sum, el| sum + el[reading_field] }.to_f / readings_arr.size
+      end
     end
 
     result

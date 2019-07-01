@@ -1,5 +1,9 @@
 FactoryBot.define do
-  factory :answer_set_member do
+  factory :reading do
+    association :thermostat
 
+    temperature { 24.5 }
+    humidity { 24.5 }
+    battery_charge { 52.5 }
   end
 end

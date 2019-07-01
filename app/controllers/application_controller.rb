@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_thermostat
     unless current_thermostat
-      render_error(error_code)
+      render_error(401)
       return false
     end
 

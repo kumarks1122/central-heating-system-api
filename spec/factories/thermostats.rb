@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :thermostat do
-    location "Rosenthaler Str. 63-64, 10119 Berlin, Germany"
+    sequence(:location) { |n| "Rosenthaler Str. #{n}-64, 10119 Berlin, Germany" }
   end
 end

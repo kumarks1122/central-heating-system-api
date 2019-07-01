@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Reading, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it "has a valid factory" do
+    expect(build(:reading)).to be_valid
+  end
+
+  describe 'associations' do
+    it { should belong_to(:thermostat) }
+  end
 end
