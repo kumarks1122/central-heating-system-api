@@ -1,0 +1,11 @@
+:concurrency: 20
+:logfile: ./log/sidekiq.log
+staging:
+  :concurrency: 20
+development:
+  :concurrency: 20
+production:
+  :concurrency: 20
+:queues:
+  - reading_updater_worker
+  - default
